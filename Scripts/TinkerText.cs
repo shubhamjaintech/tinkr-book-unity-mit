@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
     
 public class TinkerText : MonoBehaviour {
    
@@ -12,8 +13,13 @@ public class TinkerText : MonoBehaviour {
     private float endTime;
     private float delayTime;
     public GameObject text;
-    public Animator a;
-    public Animation anim;
+    public Animator wordanimator;
+    public Animator iconanimator;
+    public Animator graphicanimator;
+
+    public GameObject anim;
+    public GameObject anim2;
+    public static int nooftaps;
 
 
     // Use this for initialization
@@ -21,8 +27,9 @@ public class TinkerText : MonoBehaviour {
         //a = text.GetComponent<Animator>();
         
         //anim = gameObject.GetComponent<Animation>();
-        a = gameObject.GetComponent<Animator>();
-        Debug.Log(a);
+        
+       // wordanimator = gameObject.GetComponent<TinkerText>().GetComponent<Animator>();
+       Debug.Log(wordanimator + "    " + iconanimator);
     }
 
     // Update is called once per frame
@@ -38,63 +45,44 @@ public class TinkerText : MonoBehaviour {
     public void OnMouseUp()
     {
 
-        Debug.Log("on mouse up" + a.speed);
-        a.SetTrigger("resume");
-        //a.speed = 1/delayTime;
 
+        Debug.Log("on mouse up" + wordanimator.speed);
+        wordanimator.SetTrigger("resume");
+        iconanimator.SetTrigger("tapup");
+        anim.SetActive(false);
     }
-    //public Animation GetAnimationClip(string name)
-    //{
-    //    if (!a) return null; // no animator
-
-    //    //foreach (Animation clip in a.runtimeAnimatorController.animationC)
-    //    //{
-    //    //    if (clip.name == name)
-    //    //    {
-    //    //        return clip;
-    //    //    }
-    //    //}
-    //    return null; // no clip by that name
-    //}
-
-
-    void clipPlay()
+    public void clipPlay()
     {
+        anim.SetActive(true);
+        //anda visible initially
+        if(anim2!=null)
+        anim2.SetActive(true);
+
+
+        Debug.Log("entered clip play");
         AudioSource source = gameObject.GetComponent<AudioSource>();
-       
-        //AudioClip wordClip = (AudioClip)Resources.Load("Audio/VO/child_tap_1") as AudioClip;
-        //source.clip = wordClip;
-        //float delaytime = 1.53f;
-         delayTime = 0.21f;
-        //text.GetComponent<Animator>().enabled = true;
-        //Debug.Log("deepu"+a);
-        a.speed = 1 / (delayTime);
-        //play sound
+        delayTime = 0.21f;
+        wordanimator.speed = 1 / (delayTime);
         source.Play();
-        //play animation
-        //Debug.Log("b4"+a.speed);
-        a.Play("textzoomout");
-        //Debug.Log("a4" + a.speed);
-        //a.speed = 1 / (delayTime * 2);
-
-        //Debug.Log("check" + GameManager.mousepressed);
-        //Debug.Log("check2" + anim.name);
-
-        //if (GameManager.mousepressed && GetAnimationClip("textzoomout").normalizedTime == 0.5f)// && a.GetCurrentAnimatorStateInfo(0).normalizedTime == 0.5)
-        //{
-        //    Debug.Log("dasd");
-        //    a.speed = 0;
-
-        //    //float ak = (float)a.GetParameter(1);
+        wordanimator.SetTrigger("tapme");
+        iconanimator.SetTrigger("tap");
 
 
-        //    Time.timeScale = 0;
+        if (graphicanimator!=null) { 
+        if (nooftaps < 2)
+        {
+            int i = nooftaps + 1;
+            graphicanimator.SetTrigger("crack" + i);
+            nooftaps++;
+        }
+        else {
+            graphicanimator.SetTrigger("crack3");
+            SceneManager.LoadScene("Scene02");
+        } }
 
-        //}
 
-        //if (!anim.IsPlaying("textzoomout"))
-        //    anim.Play("textzoom");
-        //text.GetComponent<Animator>().enabled = false;
+
+        anim.SetActive(true);
     }
 
 }

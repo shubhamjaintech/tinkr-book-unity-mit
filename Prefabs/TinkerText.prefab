@@ -99,7 +99,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -157,7 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stanza: {fileID: 0}
   text: {fileID: 1205149657787200}
-  a: {fileID: 0}
+  wordanimator: {fileID: 0}
+  iconanimator: {fileID: 0}
   anim: {fileID: 0}
 --- !u!114 &114354365826196830
 MonoBehaviour:
