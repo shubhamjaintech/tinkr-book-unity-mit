@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
     
 public class TinkerText : MonoBehaviour {
    
@@ -14,7 +15,11 @@ public class TinkerText : MonoBehaviour {
     public GameObject text;
     public Animator wordanimator;
     public Animator iconanimator;
+    public Animator graphicanimator;
+
     public GameObject anim;
+    public GameObject anim2;
+    public static int nooftaps;
 
 
     // Use this for initialization
@@ -49,13 +54,34 @@ public class TinkerText : MonoBehaviour {
     public void clipPlay()
     {
         anim.SetActive(true);
+        //anda visible initially
+        if(anim2!=null)
+        anim2.SetActive(true);
+
+
         Debug.Log("entered clip play");
         AudioSource source = gameObject.GetComponent<AudioSource>();
-         delayTime = 0.21f;
+        delayTime = 0.21f;
         wordanimator.speed = 1 / (delayTime);
         source.Play();
         wordanimator.SetTrigger("tapme");
         iconanimator.SetTrigger("tap");
+
+
+        if (graphicanimator!=null) { 
+        if (nooftaps < 2)
+        {
+            int i = nooftaps + 1;
+            graphicanimator.SetTrigger("crack" + i);
+            nooftaps++;
+        }
+        else {
+            graphicanimator.SetTrigger("crack3");
+            SceneManager.LoadScene("Scene02");
+        } }
+
+
+
         anim.SetActive(true);
     }
 
