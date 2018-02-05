@@ -85,8 +85,13 @@ public class GameManager : MonoBehaviour, IPointerDownHandler, IPointerClickHand
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Screen.autorotateToLandscapeLeft = true;
+        Screen.autorotateToLandscapeRight = true;
+        Screen.autorotateToPortrait = false;
+        Screen.autorotateToPortraitUpsideDown = false;
+        Screen.orientation = ScreenOrientation.AutoRotation;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("Drag Begin");
