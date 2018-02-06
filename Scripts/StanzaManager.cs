@@ -35,7 +35,10 @@ public class StanzaManager : MonoBehaviour {
 
 
     }
-
+    public void OnMouseUp(TinkerGraphic tinkerGraphic)
+    {
+        tinkerGraphic.OnMouseUp();
+    }
     public void OnMouseUp(TinkerText tinkerText)
     {
         if (tinkerText.stanza != null && stanzas.Contains(tinkerText.stanza))

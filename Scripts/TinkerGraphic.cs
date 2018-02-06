@@ -6,26 +6,31 @@ using UnityEngine.SceneManagement;
 public class TinkerGraphic : MonoBehaviour {
     private Animator anim;
     public TinkerText tink;
-    public TinkerText poptink;
+    public TinkerText pairedTinkerText;
 
     // Use this for initialization
     void Start () {
-        anim = GetComponent<Animator>();	
-	}
+        anim = GetComponent<Animator>();
+        
+    }
 	// Update is called once per frame
 	void Update () {
 		
 	}
+   
+    public void OnMouseDown()
+    {
+        //if (pairedTinkerText != null)
+        //    TinkerText.pairedgraphic = true;
+
+        Debug.Log("tinker graphic paired "+TinkerText.pairedgraphic);
+        graphicPlay();
+     
+    }
     public void OnMouseUp()
     {
-        TinkerText.pairedgraphic = false;
-    }
-        public void OnMouseDown()
-    {
-        TinkerText.pairedgraphic = true;
-        graphicPlay();
-       
-
+        tink.clipResume();
+        //TinkerText.pairedgraphic = false;
     }
     public void graphicPlay()
     {
@@ -40,7 +45,11 @@ public class TinkerGraphic : MonoBehaviour {
             }
             else
             {
-                poptink.clipPlay();
+                if (pairedTinkerText != null)
+                {
+                    pairedTinkerText.clipPlay();
+
+                }
                 
                 anim.SetTrigger("crack3");
                 SceneManager.LoadScene("Scene02");

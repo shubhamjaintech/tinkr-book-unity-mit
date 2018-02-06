@@ -40,7 +40,9 @@ public class SManager : MonoBehaviour {
         {
             stanzaManager.OnMouseUp(go.GetComponent<TinkerText>());
         }
-
+        else if(go.tag=="graphic"){
+            stanzaManager.OnMouseUp(go.GetComponent<TinkerGraphic>());
+        }
     }
     // Here we have a superclass intercept for catching global TinkerGraphic mouse down events
     public virtual void OnMouseDown(TinkerGraphic tinkerGraphic)

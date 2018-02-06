@@ -20,6 +20,7 @@ public class TinkerText : MonoBehaviour {
     private Animator graphicanimator;
 
     public GameObject anim;
+    //egg crack
     public GameObject anim2;
     public static int nooftaps;
 
@@ -31,7 +32,7 @@ public class TinkerText : MonoBehaviour {
         iconanimator = anim.GetComponent<Animator>();
         if(anim2!=null)
         graphicanimator = anim2.GetComponent<Animator>();
-       Debug.Log(wordanimator + "    " + iconanimator+"       "+graphicanimator);
+       //Debug.Log(wordanimator + "    " + iconanimator+"       "+graphicanimator);
     }
 
     // Update is called once per frame
@@ -43,19 +44,26 @@ public class TinkerText : MonoBehaviour {
     {
         clipPlay();
         iconanimPlay();
-        tinkerGraphic.graphicPlay();
-        //graphicPlay();
+        if(tinkerGraphic!=null)
+        graphicPlay();
+        
     }
 
     public void OnMouseUp()
     {
         Debug.Log("on mouse up" + wordanimator.speed);
-        wordanimator.SetTrigger("resume");
-        iconanimator.SetTrigger("tapup");
-        if (pairedgraphic) {
+        //if(!pairedgraphic)
+        clipResume();
+            iconanimator.SetTrigger("tapup");
+      
             tinkerGraphic.OnMouseUp();
-        }
+        
+        //wordanimator.SetTrigger("resume");
         anim.SetActive(false);
+    }
+    public void clipResume()
+    {
+        wordanimator.SetTrigger("resume");
     }
     public void clipPlay()
     {
@@ -65,36 +73,34 @@ public class TinkerText : MonoBehaviour {
         wordanimator.speed = 1 / (delayTime);
         source.Play();
         wordanimator.SetTrigger("tapme");
-        if (pairedgraphic) {
-            wordanimator.SetTrigger("resume");
-
-        }
+        Debug.Log("clip play "+pairedgraphic);
+      //if (pairedgraphic) {
+      //      wordanimator.SetTrigger("resume");
+      // }
 
     }
     public void iconanimPlay()
     {
         anim.SetActive(true);
         iconanimator.SetTrigger("tap");
-        anim.SetActive(true);
-
     }
-    //public void graphicPlay()
-    //{
-    //    if (anim2 != null)
-    //        anim2.SetActive(true);
-    //    if (graphicanimator != null)
-    //    {
-    //        if (nooftaps < 2)
-    //        {
-    //            int i = nooftaps + 1;
-    //            graphicanimator.SetTrigger("crack" + i);
-    //            nooftaps++;
-    //        }
-    //        else
-    //        {
-    //            graphicanimator.SetTrigger("crack3");
-    //            SceneManager.LoadScene("Scene02");
-    //        }
-    //    }
-    //}
-}
+    public void graphicPlay()
+    {
+        if (anim2 != null)
+            anim2.SetActive(true);
+        if (graphicanimator != null)
+        {
+            if (nooftaps < 2)
+            {
+                int i = nooftaps + 1;
+                graphicanimator.SetTrigger("crack" + i);
+                nooftaps++;
+            }
+            else
+            {
+                graphicanimator.SetTrigger("crack3");
+                SceneManager.LoadScene("Scene02");
+            }
+        }
+        }
+    }
