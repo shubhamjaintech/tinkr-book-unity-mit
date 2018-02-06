@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
     
 public class TinkerText : MonoBehaviour {
-   
+
+    public TinkerGraphic tinkerGraphic;
+    public static bool pairedgraphic = false;
    // public Text tinkerText;
     public Stanza stanza;
     // Auto play timing related
@@ -40,6 +42,9 @@ public class TinkerText : MonoBehaviour {
     public void OnMouseDown()
     {
         clipPlay();
+        iconanimPlay();
+        tinkerGraphic.graphicPlay();
+        //graphicPlay();
     }
 
     public void OnMouseUp()
@@ -47,35 +52,49 @@ public class TinkerText : MonoBehaviour {
         Debug.Log("on mouse up" + wordanimator.speed);
         wordanimator.SetTrigger("resume");
         iconanimator.SetTrigger("tapup");
+        if (pairedgraphic) {
+            tinkerGraphic.OnMouseUp();
+        }
         anim.SetActive(false);
     }
     public void clipPlay()
     {
-        anim.SetActive(true);
-        if(anim2!=null)
-        anim2.SetActive(true);
         Debug.Log("entered clip play");
         AudioSource source = gameObject.GetComponent<AudioSource>();
         delayTime = 0.21f;
         wordanimator.speed = 1 / (delayTime);
         source.Play();
         wordanimator.SetTrigger("tapme");
-        iconanimator.SetTrigger("tap");
-        if (graphicanimator != null)
-        {
-            if (nooftaps < 2)
-            {
-                int i = nooftaps + 1;
-                graphicanimator.SetTrigger("crack" + i);
-                nooftaps++;
-            }
-            else
-            {
-                graphicanimator.SetTrigger("crack3");
-                SceneManager.LoadScene("Scene02");
-            }
-        }
-        anim.SetActive(true);
-    }
+        if (pairedgraphic) {
+            wordanimator.SetTrigger("resume");
 
+        }
+
+    }
+    public void iconanimPlay()
+    {
+        anim.SetActive(true);
+        iconanimator.SetTrigger("tap");
+        anim.SetActive(true);
+
+    }
+    //public void graphicPlay()
+    //{
+    //    if (anim2 != null)
+    //        anim2.SetActive(true);
+    //    if (graphicanimator != null)
+    //    {
+    //        if (nooftaps < 2)
+    //        {
+    //            int i = nooftaps + 1;
+    //            graphicanimator.SetTrigger("crack" + i);
+    //            nooftaps++;
+    //        }
+    //        else
+    //        {
+    //            graphicanimator.SetTrigger("crack3");
+    //            SceneManager.LoadScene("Scene02");
+    //        }
+    //    }
+    //}
 }

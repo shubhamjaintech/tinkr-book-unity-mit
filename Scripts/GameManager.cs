@@ -110,7 +110,8 @@ public class GameManager : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
-        
+       // sceneManager.OnMouseDown(eventData.pointerCurrentRaycast.gameObject);
+
     }
 
     public void OnPointerDown(PointerEventData eventData)

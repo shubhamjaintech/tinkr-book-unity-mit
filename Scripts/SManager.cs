@@ -22,11 +22,17 @@ public class SManager : MonoBehaviour {
     public virtual void OnMouseDown(GameObject go)
     {
         Debug.Log(go.tag);
-        if (go.tag == "text") {
-              stanzaManager.OnMouseDown(go.GetComponent<TinkerText>());
+        if (go.tag == "text")
+        {
+            stanzaManager.OnMouseDown(go.GetComponent<TinkerText>());
 
-            }
-        
+        }
+        else {
+            Debug.Log("graphic");
+            stanzaManager.OnMouseDown(go.GetComponent<TinkerGraphic>());
+
+        }
+
     }
     public virtual void OnMouseUp(GameObject go)
     {

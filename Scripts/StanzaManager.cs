@@ -25,6 +25,16 @@ public class StanzaManager : MonoBehaviour {
 
 
     }
+    public void OnMouseDown(TinkerGraphic tinkerGraphic)
+    {
+        Debug.Log("stanzamanager" + tinkerGraphic.name);
+        if (tinkerGraphic != null)
+        {
+            tinkerGraphic.OnMouseDown();
+        }
+
+
+    }
 
     public void OnMouseUp(TinkerText tinkerText)
     {
