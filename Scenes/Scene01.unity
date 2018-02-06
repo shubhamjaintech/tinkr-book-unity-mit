@@ -1549,10 +1549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stanza: {fileID: 1805811267}
-  text: {fileID: 1386300212}
-  wordanimator: {fileID: 1386300214}
-  iconanimator: {fileID: 1547279656}
-  graphicanimator: {fileID: 2138017788}
   anim: {fileID: 1547279654}
   anim2: {fileID: 2138017786}
 --- !u!1 &1474187824

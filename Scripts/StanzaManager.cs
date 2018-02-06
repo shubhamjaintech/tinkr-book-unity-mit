@@ -16,10 +16,6 @@ public class StanzaManager : MonoBehaviour {
 	void Update () {
 		
 	}
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="tinkerText"></param>
     public void OnMouseDown(TinkerText tinkerText) {
         Debug.Log("stanzamanager"+tinkerText.name);
         if (tinkerText.stanza != null && stanzas.Contains(tinkerText.stanza))
