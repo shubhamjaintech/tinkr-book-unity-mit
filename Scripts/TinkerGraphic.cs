@@ -45,14 +45,16 @@ public class TinkerGraphic : MonoBehaviour {
             }
             else
             {
+                TinkerText.nooftaps--;
                 if (pairedTinkerText != null)
                 {
+                    //pairedTinkerText.GetComponent<Animator>();
                     pairedTinkerText.clipPlay();
-
+                    pairedTinkerText.clipResume();
                 }
                 
                 anim.SetTrigger("crack3");
-                SceneManager.LoadScene("Scene02");
+                //SceneManager.LoadScene("Scene02");
             }
         }
     }
@@ -65,6 +67,8 @@ public class TinkerGraphic : MonoBehaviour {
                 int i = TinkerText.nooftaps + 1;
                 anim.SetTrigger("crack" + i);
                 TinkerText.nooftaps++;
+                Debug.Log("tapcountgraphic: " + TinkerText.nooftaps);
+
             }
             else
             {
